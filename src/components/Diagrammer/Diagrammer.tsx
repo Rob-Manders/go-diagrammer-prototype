@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react'
 import Diagram from '../../lib/diagrammer/Diagram'
 import { DiagramObject } from '../../lib/diagrammer/interfaces'
 import { generateID } from '../../lib/generateID'
+import DiagramEditor from './DiagramEditor'
 
 export default function Diagrammer(): JSX.Element {
   const [diagram, setDiagram] = useState<DiagramObject | undefined>()
@@ -52,16 +53,6 @@ export default function Diagrammer(): JSX.Element {
       </form>
 
       {diagram && <DiagramEditor diagram={diagram} />}
-    </div>
-  )
-}
-
-function DiagramEditor({ diagram }: { diagram: DiagramObject }): JSX.Element {
-  return (
-    <div className='diagram'>
-      <h2>Diagram</h2>
-      <div className='toolbar'></div>
-      <div className='board'></div>
     </div>
   )
 }
