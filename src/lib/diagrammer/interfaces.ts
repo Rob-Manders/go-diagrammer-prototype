@@ -1,6 +1,6 @@
 export interface Coordinates {
-  x: string
-  y: string
+  x: number
+  y: number
 }
 
 export interface Board {
@@ -25,4 +25,11 @@ export interface Position {
   }
   labels: Label[]
   symbols: Symbol[]
+}
+
+export interface DiagramObject {
+  id: string
+  title: string
+  description: string
+  positions: Position[]
 }

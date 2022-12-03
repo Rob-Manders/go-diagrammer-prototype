@@ -1,6 +1,6 @@
-import { Coordinates, Board, Position } from './interfaces'
+import { Coordinates, Board, Position, DiagramObject } from './interfaces'
 
-export default class Diagram {
+export default class Diagram<DiagramObject> {
   private defaultPosition: Position = {
     caption: '',
     stones: {
@@ -13,7 +13,7 @@ export default class Diagram {
 
   positions: Position[] = [this.defaultPosition]
 
-  constructor(public id: 'string', public title: string, public description: string, public board: Board) {}
+  constructor(public id: string, public title: string, public description: string, public board: Board) {}
 
   private validStoneColour(colour: string) {
     if (colour.toLowerCase() === 'black' || colour.toLowerCase() === 'white') {
