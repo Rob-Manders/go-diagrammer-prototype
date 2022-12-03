@@ -18,12 +18,10 @@
 		{
 			caption,
 			stones: {
-				white: [],
-				black: []
+				black: [],
+				white: []
 			},
-			labels: {
-				[]
-			},
+			labels: [],
 			symbols: []
 		}
 	]
@@ -32,8 +30,9 @@
 
 ## Features:
 
-- Returns a diagram object?
-- Create board.
+- Returns a diagram object.
+- Create board. - Initialised within class constructor.
+- Generate ID.
 - Add position.
 - Remove position.
 - Add stone.
