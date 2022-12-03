@@ -1,19 +1,19 @@
 import { Coordinates, Board, Position } from './interfaces'
 import { generateID } from './generateID'
 
-const defaultPosition: Position = {
-  caption: '',
-  stones: {
-    black: [],
-    white: []
-  },
-  labels: [],
-  symbols: []
-}
-
 export class Diagram {
+  private defaultPosition: Position = {
+    caption: '',
+    stones: {
+      black: [],
+      white: []
+    },
+    labels: [],
+    symbols: []
+  }
+
   id: string = generateID(12)
-  positions: Position[] = [defaultPosition]
+  positions: Position[] = [this.defaultPosition]
 
   constructor(public title: string, public description: string, public board: Board) {}
 
@@ -37,7 +37,7 @@ export class Diagram {
 
   addPosition(caption: string = '') {
     const positionIndex = this.positions.length
-    this.positions.push(defaultPosition)
+    this.positions.push(this.defaultPosition)
     this.positions[positionIndex].caption = caption
   }
 
