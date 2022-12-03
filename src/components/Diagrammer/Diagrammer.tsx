@@ -49,6 +49,8 @@ export default function Diagrammer(): JSX.Element {
         <label>Y</label>
         <input type='text' onChange={event => setYCoord(Number(event.target.value))} />
 
+        <br />
+
         <button type='submit'>Create New Diagram</button>
       </form>
 
