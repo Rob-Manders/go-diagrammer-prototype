@@ -1,7 +1,3 @@
-# React Project Template
+# Go Diagrammer
 
-A template for building static React apps in Typescript.
-
-I could use `create-react-app`, but I don't like the bloat...
-
-Includes styled-components.
+Prototype diagramming system for building and displaying Go board positions.
