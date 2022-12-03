@@ -1,7 +1,6 @@
 import { Coordinates, Board, Position } from './interfaces'
-import { generateID } from './generateID'
 
-export class Diagram {
+export default class Diagram {
   private defaultPosition: Position = {
     caption: '',
     stones: {
@@ -12,10 +11,9 @@ export class Diagram {
     symbols: []
   }
 
-  id: string = generateID(12)
   positions: Position[] = [this.defaultPosition]
 
-  constructor(public title: string, public description: string, public board: Board) {}
+  constructor(public id: 'string', public title: string, public description: string, public board: Board) {}
 
   private validStoneColour(colour: string) {
     if (colour.toLowerCase() === 'black' || colour.toLowerCase() === 'white') {
