@@ -1,4 +1,5 @@
 import { Coordinates, Board, Position } from './interfaces'
+import { generateID } from './generateID'
 
 const defaultPosition: Position = {
   caption: '',
@@ -11,20 +12,10 @@ const defaultPosition: Position = {
 }
 
 export class Diagram {
-  id: string = this.generateID(12)
+  id: string = generateID(12)
   positions: Position[] = [defaultPosition]
 
   constructor(public title: string, public description: string, public board: Board) {}
-
-  private generateID(length: number) {
-    // TODO: Refactor out into helper function?
-    const chars = '0123456789abcdefghijklmnopqrstuvwxyz'
-    let id = ''
-    for (let i = length; i > 0; --i) {
-      id += chars[Math.floor(Math.random() * chars.length)]
-    }
-    return id
-  }
 
   private validStoneColour(colour: string) {
     if (colour.toLowerCase() === 'black' || colour.toLowerCase() === 'white') {
@@ -72,19 +63,16 @@ export class Diagram {
     }
   }
 
-  // Remove label.
   removeLabel(position: number, label: number) {
     this.positions[position].labels.splice(label, 1)
   }
 
-  // Add symbol.
   addSymbol(position: number, symbol: string, coordinates: Coordinates) {
     if (this.validcoordinates(coordinates)) {
       this.positions[position].symbols.push({ symbol, coordinates })
     }
   }
 
-  // Remove symbol.
   removeSymbol(position: number, symbol: number) {
     this.positions[position].symbols.splice(symbol, 1)
   }
