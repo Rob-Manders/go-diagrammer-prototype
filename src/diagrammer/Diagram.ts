@@ -1,45 +1,91 @@
-interface Coordinate {
-  x: string
-  y: string
-}
+import { Coordinates, Board, Position } from './interfaces'
 
-interface Board {
-  size: Coordinate
-  location: string
-}
-
-interface Position {
-  caption: string
+const defaultPosition: Position = {
+  caption: '',
   stones: {
-    black: Coordinate[]
-    white: Coordinate[]
-  }
-  labels: string[]
-  symbols: string[]
+    black: [],
+    white: []
+  },
+  labels: [],
+  symbols: []
 }
 
 export class Diagram {
-  // id: number
-  positions: Position[]
+  id: string = this.generateID(12)
+  positions: Position[] = [defaultPosition]
 
-  constructor(title: string, description: string, board: Board) {}
+  constructor(public title: string, public description: string, public board: Board) {}
 
-  // Generate ID.
-  // TODO: Refactor out into helper function?
+  private generateID(length: number) {
+    // TODO: Refactor out into helper function?
+    const chars = '0123456789abcdefghijklmnopqrstuvwxyz'
+    let id = ''
+    for (let i = length; i > 0; --i) {
+      id += chars[Math.floor(Math.random() * chars.length)]
+    }
+    return id
+  }
 
-  // Add position.
+  private validStoneColour(colour: string) {
+    if (colour.toLowerCase() === 'black' || colour.toLowerCase() === 'white') {
+      return true
+    } else {
+      return false
+    }
+  }
 
-  // Remove position.
+  private validcoordinates(coordinates: Coordinates) {
+    const boardSize = this.board.size
 
-  // Adds stone.
+    if (coordinates.x <= boardSize.x && coordinates.y <= boardSize.y) {
+      return true
+    } else {
+      return false
+    }
+  }
 
-  // Remove stone.
+  addPosition(caption: string = '') {
+    const positionIndex = this.positions.length
+    this.positions.push(defaultPosition)
+    this.positions[positionIndex].caption = caption
+  }
 
-  // Add label.
+  removePosition(position: number) {
+    this.positions.splice(position, 1)
+  }
+
+  addStone(position: number, colour: string, coordinates: Coordinates) {
+    if (this.validStoneColour(colour) && this.validcoordinates(coordinates)) {
+      this.positions[position].stones[colour].push(coordinates)
+    }
+  }
+
+  removeStone(position: number, colour: string, stoneIndex: number) {
+    if (this.validStoneColour(colour)) {
+      this.positions[position].stones[colour].splice(stoneIndex, 1)
+    }
+  }
+
+  addlabel(position: number, label: string, coordinates: Coordinates) {
+    if (label.length === 1 && this.validcoordinates(coordinates)) {
+      this.positions[position].labels.push({ label, coordinates })
+    }
+  }
 
   // Remove label.
+  removeLabel(position: number, label: number) {
+    this.positions[position].labels.splice(label, 1)
+  }
 
   // Add symbol.
+  addSymbol(position: number, symbol: string, coordinates: Coordinates) {
+    if (this.validcoordinates(coordinates)) {
+      this.positions[position].symbols.push({ symbol, coordinates })
+    }
+  }
 
   // Remove symbol.
+  removeSymbol(position: number, symbol: number) {
+    this.positions[position].symbols.splice(symbol, 1)
+  }
 }
