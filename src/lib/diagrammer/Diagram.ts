@@ -1,4 +1,4 @@
-import { Coordinates, Board, Position, DiagramObject } from './interfaces'
+import { Coordinates, Board, Position, DiagramObject } from '../interfaces'
 
 export default class Diagram<DiagramObject> {
   private defaultPosition: Position = {
@@ -13,7 +13,7 @@ export default class Diagram<DiagramObject> {
 
   positions: Position[] = [this.defaultPosition]
 
-  constructor(public id: string, public title: string, public description: string, public board: Board) {}
+  constructor(public title: string, public description: string, public board: Board) {}
 
   private validStoneColour(colour: string) {
     if (colour.toLowerCase() === 'black' || colour.toLowerCase() === 'white') {
@@ -26,7 +26,7 @@ export default class Diagram<DiagramObject> {
   private validcoordinates(coordinates: Coordinates) {
     const boardSize = this.board.size
 
-    if (coordinates.x <= boardSize.x && coordinates.y <= boardSize.y) {
+    if (coordinates.width <= boardSize.width && coordinates.height <= boardSize.height) {
       return true
     } else {
       return false
