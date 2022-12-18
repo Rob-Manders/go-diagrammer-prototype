@@ -1,5 +1,5 @@
 import React from 'react'
-import Diagrammer from './components/Diagrammer'
+import Diagrammer from './features/Diagrammer'
 
 export default function App() {
   return (

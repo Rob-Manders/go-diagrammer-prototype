@@ -1,28 +1,6 @@
-import React, { createContext, useReducer } from 'react'
+import { SelectedAction } from '../interfaces'
 
-export const DiagrammerContext = createContext(null)
-
-interface SelectedAction {
-  selectedAction: string
-  stoneColour?: string | undefined
-  symbol?: string | undefined
-  label?: string | undefined
-}
-
-export default function DiagrammerContextProvider({ children }: { children: JSX.Element }): JSX.Element {
-  const [action, dispatchAction] = useReducer(setAction, {
-    selectedAction: 'none',
-    stoneColour: undefined,
-    symbol: undefined,
-    label: undefined
-  })
-
-  const [diagram, dispatchDiagram] = useReducer(updateDiagram, {})
-
-  return <DiagrammerContext.Provider value={{ action, dispatchAction }}>{children}</DiagrammerContext.Provider>
-}
-
-function setAction(state: SelectedAction, action: SelectedAction) {
+export default function useSetAction(state: SelectedAction, action: SelectedAction) {
   const { selectedAction, stoneColour, symbol, label } = action
 
   switch (selectedAction) {
@@ -86,8 +64,4 @@ function setAction(state: SelectedAction, action: SelectedAction) {
         ...state
       }
   }
-}
-
-function updateDiagram(state, action) {
-  return {}
 }
