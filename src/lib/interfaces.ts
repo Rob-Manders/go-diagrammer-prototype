@@ -10,18 +10,18 @@ export interface Board {
 
 export interface Label {
   label: string
-  coordinates: Coordinates
+  space: number
 }
 
 export interface Symbol {
   symbol: string
-  coordinates: Coordinates
+  space: number
 }
 
 export interface Position {
   caption: string
   stones: {
-    [index: string]: Coordinates[]
+    [index: string]: number[]
   }
   labels: Label[]
   symbols: Symbol[]

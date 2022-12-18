@@ -1,4 +1,4 @@
-import { Coordinates, Board, Position, DiagramObject } from '../interfaces'
+import { Board, Position, DiagramObject } from '../interfaces'
 
 export default class Diagram<DiagramObject> {
   private defaultPosition: Position = {
@@ -23,14 +23,12 @@ export default class Diagram<DiagramObject> {
     }
   }
 
-  private validcoordinates(coordinates: Coordinates) {
-    const boardSize = this.board.size
+  private validSpace(id: number) {
+    const boardSize = this.board.size.width * this.board.size.height
 
-    if (coordinates.width <= boardSize.width && coordinates.height <= boardSize.height) {
-      return true
-    } else {
-      return false
-    }
+    if (id <= boardSize) return true
+
+    return false
   }
 
   addPosition(caption: string = '') {
@@ -43,9 +41,9 @@ export default class Diagram<DiagramObject> {
     this.positions.splice(position, 1)
   }
 
-  addStone(position: number, colour: string, coordinates: Coordinates) {
-    if (this.validStoneColour(colour) && this.validcoordinates(coordinates)) {
-      this.positions[position].stones[colour].push(coordinates)
+  addStone(position: number, colour: string, space: number) {
+    if (this.validStoneColour(colour) && this.validSpace(space)) {
+      this.positions[position].stones[colour].push(space)
     }
   }
 
@@ -55,9 +53,9 @@ export default class Diagram<DiagramObject> {
     }
   }
 
-  addlabel(position: number, label: string, coordinates: Coordinates) {
-    if (label.length === 1 && this.validcoordinates(coordinates)) {
-      this.positions[position].labels.push({ label, coordinates })
+  addlabel(position: number, label: string, space: number) {
+    if (label.length === 1 && this.validSpace(space)) {
+      this.positions[position].labels.push({ label, space })
     }
   }
 
@@ -65,9 +63,9 @@ export default class Diagram<DiagramObject> {
     this.positions[position].labels.splice(label, 1)
   }
 
-  addSymbol(position: number, symbol: string, coordinates: Coordinates) {
-    if (this.validcoordinates(coordinates)) {
-      this.positions[position].symbols.push({ symbol, coordinates })
+  addSymbol(position: number, symbol: string, space: number) {
+    if (this.validSpace(space)) {
+      this.positions[position].symbols.push({ symbol, space })
     }
   }
 

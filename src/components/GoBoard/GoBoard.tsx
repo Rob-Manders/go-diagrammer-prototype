@@ -1,27 +1,32 @@
 import React from 'react'
-import { Coordinates } from '../../lib/interfaces'
+import styled from 'styled-components'
+import Space from './Space'
 
-export default function GoBoard({ width, height }: Coordinates): JSX.Element {
-  let rows: JSX.Element[] = []
-  let columns: JSX.Element[] = []
+interface Props {
+  width: number
+  height: number
+}
 
-  console.log(rows)
+const Board = styled.div`
+  display: grid;
+  width: 600px;
+  margin: 0 auto;
+`
 
-  for (let i = 1; i <= width; i++) {
-    columns.push(<td key={i}></td>)
-  }
+export default function GoBoard({ width, height }: Props): JSX.Element {
+  let spaces: JSX.Element[] = []
 
-  for (let i = 1; i <= height; i++) {
-    rows.push(<tr key={i}>{columns.map(row => row)}</tr>)
+  for (let i = 1; i <= width * height; i++) {
+    spaces.push(<Space id={i} />)
   }
 
   return (
-    <div>
+    <>
       <p>Width: {width}</p>
       <p>Height: {height}</p>
-      <table>
-        <tbody>{rows.map((row, index) => row)}</tbody>
-      </table>
-    </div>
+      <Board style={{ gridTemplateRows: `repeat(${width}, 1fr)`, gridTemplateColumns: `repeat(${height}, 1fr)` }}>
+        {spaces.map(space => space)}
+      </Board>
+    </>
   )
 }

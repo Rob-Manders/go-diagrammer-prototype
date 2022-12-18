@@ -1,6 +1,6 @@
 import React from 'react'
 import { DiagramObject } from '../../../lib/interfaces'
-import GoBoard from '../../GoBoard/GoBoard'
+import GoBoard from '../../GoBoard'
 
 export default function DiagramEditor({ diagram }: { diagram: DiagramObject }): JSX.Element {
   return (
