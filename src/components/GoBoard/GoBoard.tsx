@@ -9,7 +9,6 @@ interface Props {
 
 const Board = styled.div`
   display: grid;
-  width: 600px;
   margin: 0 auto;
 `
 
@@ -21,12 +20,8 @@ export default function GoBoard({ width, height }: Props): JSX.Element {
   }
 
   return (
-    <>
-      <p>Width: {width}</p>
-      <p>Height: {height}</p>
-      <Board style={{ gridTemplateRows: `repeat(${width}, 1fr)`, gridTemplateColumns: `repeat(${height}, 1fr)` }}>
-        {spaces.map(space => space)}
-      </Board>
-    </>
+    <Board style={{ gridTemplateRows: `repeat(${width}, 1fr)`, gridTemplateColumns: `repeat(${height}, 1fr)` }}>
+      {spaces.map(space => space)}
+    </Board>
   )
 }
