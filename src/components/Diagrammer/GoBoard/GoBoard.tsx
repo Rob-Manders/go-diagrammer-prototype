@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Space from './Space'
+import Space from '../Space'
 
 interface Props {
   width: number

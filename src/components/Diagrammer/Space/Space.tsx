@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { DiagrammerContext } from '../DiagrammerContext'
 
 const SpaceDiv = styled.div`
   display: grid;
@@ -10,5 +11,7 @@ const SpaceDiv = styled.div`
 `
 
 export default function Space({ id }: { id: number }): JSX.Element {
+  const {} = useContext(DiagrammerContext)
+
   return <SpaceDiv>{id}</SpaceDiv>
 }

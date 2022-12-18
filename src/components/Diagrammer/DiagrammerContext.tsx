@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react'
 
-const DiagrammerContext = createContext(null)
+export const DiagrammerContext = createContext(null)
 
 interface SelectedAction {
   selectedAction: string
@@ -16,6 +16,8 @@ export default function DiagrammerContextProvider({ children }: { children: JSX.
     symbol: undefined,
     label: undefined
   })
+
+  const [diagram, dispatchDiagram] = useReducer(updateDiagram, {})
 
   return <DiagrammerContext.Provider value={{ action, dispatchAction }}>{children}</DiagrammerContext.Provider>
 }
@@ -84,4 +86,8 @@ function setAction(state: SelectedAction, action: SelectedAction) {
         ...state
       }
   }
+}
+
+function updateDiagram(state, action) {
+  return {}
 }
