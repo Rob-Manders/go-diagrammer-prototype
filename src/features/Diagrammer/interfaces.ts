@@ -6,9 +6,9 @@ export interface Board {
 
 export interface Space {
   id: number
-  stone?: string | undefined
-  symbol?: string | undefined
-  label?: string | undefined
+  stone: string | undefined
+  symbol: string | undefined
+  label: string | undefined
 }
 
 export interface Position {
@@ -17,6 +17,7 @@ export interface Position {
 }
 
 export interface Diagram {
+  initialised: boolean
   title: string
   description: string
   board: Board
@@ -28,4 +29,10 @@ export interface SelectedAction {
   stoneColour?: string | undefined
   symbol?: string | undefined
   label?: string | undefined
+}
+
+export interface Action extends SelectedAction {
+  position: number
+  space: number
+  newDiagram?: Diagram
 }

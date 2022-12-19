@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { DiagrammerContext } from '../../context/DiagrammerContext'
+import NewDiagramForm from '../NewDiagramForm'
 import Space from '../Space'
 
 const Board = styled.div`
@@ -11,11 +12,13 @@ const Board = styled.div`
 
 export default function GoBoard(): JSX.Element {
   const { diagram } = useContext(DiagrammerContext)
+
+  if (diagram.initialised === false) return <NewDiagramForm />
+
   const { width, height, location } = diagram.board
 
   let spaces: JSX.Element[] = []
-
-  for (let i = 1; i <= width * height; i++) {
+  for (let i = 0; i < width * height; i++) {
     spaces.push(<Space key={i} id={i} />)
   }
 

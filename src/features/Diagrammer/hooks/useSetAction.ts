@@ -7,61 +7,61 @@ export default function useSetAction(state: SelectedAction, action: SelectedActi
     case 'add-stone':
       if (stoneColour === 'black' || stoneColour === 'white') {
         return {
+          ...state,
           selectedAction,
-          stoneColour,
-          ...state
+          stoneColour
         }
       }
       return { action: 'none', ...state }
 
     case 'remove-stone':
       return {
-        selectedAction,
-        ...state
+        ...state,
+        selectedAction
       }
 
     case 'add-symbol':
       if (symbol) {
         return {
+          ...state,
           selectedAction,
-          symbol,
-          ...state
+          symbol
         }
       }
-      return { selectedAction: 'none', ...state }
+      return { ...state, selectedAction: 'none' }
 
     case 'remove-symbol':
       return {
-        selectedAction,
-        ...state
+        ...state,
+        selectedAction
       }
 
     case 'add-label':
       if (label.length === 1) {
         return {
+          ...state,
           selectedAction,
-          label: label.toUpperCase(),
-          ...state
+          label: label.toUpperCase()
         }
       }
-      return { selectedAction: 'none', ...state }
+      return { ...state, selectedAction: 'none' }
 
     case 'remove-label':
       return {
-        selectedAction,
-        ...state
+        ...state,
+        selectedAction
       }
 
     case 'none':
       return {
-        selectedAction: 'none',
-        ...state
+        ...state,
+        selectedAction: 'none'
       }
 
     default:
       return {
-        selectedAction: 'none',
-        ...state
+        ...state,
+        selectedAction: 'none'
       }
   }
 }

@@ -14,17 +14,18 @@ export default function DiagrammerContextProvider({ children }: { children: JSX.
   })
 
   const [diagram, dispatchDiagram] = useReducer(useUpdateDiagram, {
-    title: 'Example Diagram',
-    description: 'This is a diagram...',
+    initialised: false,
+    title: undefined,
+    description: undefined,
     board: {
-      width: 13,
-      height: 13,
+      width: undefined,
+      height: undefined,
       location: 'full'
     },
     positions: [
       {
-        id: 1,
-        caption: 'Example position...'
+        caption: undefined,
+        spaces: undefined
       }
     ]
   })
