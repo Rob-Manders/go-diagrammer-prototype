@@ -59,20 +59,29 @@ export default function useUpdateDiagram(state: Diagram, action: Action) {
 
     case 'add-label':
       if (label.length === 1) {
+        positionToUpdate.spaces[space] = {
+          ...positionToUpdate.spaces[space],
+          id: space,
+          symbol: undefined,
+          label
+        }
+
         return {
-          ...state
+          ...state,
+          positions: [positionToUpdate, ...state.positions]
         }
       }
       return { ...state }
 
     case 'remove-label':
-      return {
-        ...state
+      positionToUpdate.spaces[space] = {
+        ...positionToUpdate.spaces[space],
+        id: space,
+        label: undefined
       }
-
-    case 'none':
       return {
-        ...state
+        ...state,
+        positions: [positionToUpdate, ...state.positions]
       }
 
     default:

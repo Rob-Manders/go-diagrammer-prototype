@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { DiagrammerContext } from '../../context/DiagrammerContext'
 import { SpaceContainer } from './SpaceContainer'
 import { Stone } from './Stone'
+import { Label } from './Label'
 
 export default function Space({ id }: { id: number }): JSX.Element {
   const { action, diagram, dispatchDiagram, position } = useContext(DiagrammerContext)
@@ -18,6 +19,7 @@ export default function Space({ id }: { id: number }): JSX.Element {
   return (
     <SpaceContainer onClick={updateSpace} className={`${!stone && 'empty'}`}>
       {stone && <Stone className={`stone ${stone}`} />}
+      {label && <Label className={`${stone && 'hasStone'} ${stone === 'black' && 'whiteLabel'}`}>{label}</Label>}
     </SpaceContainer>
   )
 }
