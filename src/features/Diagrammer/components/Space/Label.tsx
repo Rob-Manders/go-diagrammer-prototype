@@ -5,7 +5,7 @@ export const Label = styled.span`
   inset: 20%;
   display: grid;
   place-items: center;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 400;
   background-color: #7e531b;
   z-index: 10;

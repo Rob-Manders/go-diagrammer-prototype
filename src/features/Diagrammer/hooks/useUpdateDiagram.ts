@@ -28,7 +28,7 @@ export default function useUpdateDiagram(state: Diagram, action: Action) {
 
         return {
           ...state,
-          positions: [positionToUpdate, ...state.positions]
+          positions: [positionToUpdate]
         }
       }
       return { ...state }
@@ -41,7 +41,7 @@ export default function useUpdateDiagram(state: Diagram, action: Action) {
       }
       return {
         ...state,
-        positions: [positionToUpdate, ...state.positions]
+        positions: [positionToUpdate]
       }
 
     case 'add-symbol':
@@ -58,7 +58,7 @@ export default function useUpdateDiagram(state: Diagram, action: Action) {
       }
 
     case 'add-label':
-      if (label.length === 1) {
+      if (label.length <= 2 && label.length > 0) {
         positionToUpdate.spaces[space] = {
           ...positionToUpdate.spaces[space],
           id: space,
@@ -68,7 +68,7 @@ export default function useUpdateDiagram(state: Diagram, action: Action) {
 
         return {
           ...state,
-          positions: [positionToUpdate, ...state.positions]
+          positions: [positionToUpdate]
         }
       }
       return { ...state }
@@ -81,7 +81,7 @@ export default function useUpdateDiagram(state: Diagram, action: Action) {
       }
       return {
         ...state,
-        positions: [positionToUpdate, ...state.positions]
+        positions: [positionToUpdate]
       }
 
     default:

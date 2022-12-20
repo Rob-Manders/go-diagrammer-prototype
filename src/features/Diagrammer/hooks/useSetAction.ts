@@ -37,7 +37,7 @@ export default function useSetAction(state: SelectedAction, action: SelectedActi
       }
 
     case 'add-label':
-      if (label.length === 1) {
+      if (label.length <= 2 && label.length > 0) {
         return {
           ...state,
           selectedAction,
