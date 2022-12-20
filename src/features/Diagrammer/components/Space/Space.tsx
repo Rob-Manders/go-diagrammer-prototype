@@ -1,23 +1,23 @@
-import React, { useContext } from 'react'
-import styled from 'styled-components'
+import React, { useContext, useState } from 'react'
 import { DiagrammerContext } from '../../context/DiagrammerContext'
-
-const SpaceDiv = styled.div`
-  display: grid;
-  place-items: center;
-  color: #000;
-  height: 100%;
-  aspect-ratio: 1 / 1;
-  cursor: pointer;
-
-  &:hover {
-    color: #fff;
-    transition: color 150ms ease-in-out;
-  }
-`
+import { SpaceContainer } from './SpaceContainer'
+import { Stone } from './Stone'
 
 export default function Space({ id }: { id: number }): JSX.Element {
-  const { action, diagram, dispatchDiagram } = useContext(DiagrammerContext)
+  const { action, diagram, dispatchDiagram, position } = useContext(DiagrammerContext)
+  const { stone, symbol, label } = diagram.positions[position].spaces[id]
 
-  return <SpaceDiv onClick={() => console.log(id)}>{id}</SpaceDiv>
+  function updateSpace() {
+    dispatchDiagram({
+      ...action,
+      position,
+      space: id
+    })
+  }
+
+  return (
+    <SpaceContainer onClick={updateSpace} className={`${!stone && 'empty'}`}>
+      {stone && <Stone className={`stone ${stone}`} />}
+    </SpaceContainer>
+  )
 }

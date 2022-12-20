@@ -5,6 +5,8 @@ export default function useUpdateDiagram(state: Diagram, action: Action) {
 
   if (state === undefined) return undefined
 
+  let positionToUpdate = state.positions[position]
+
   switch (selectedAction) {
     case 'create-new-diagram':
       return {
@@ -13,13 +15,11 @@ export default function useUpdateDiagram(state: Diagram, action: Action) {
         title: newDiagram.title,
         description: newDiagram.description,
         board: newDiagram.board,
-        postitions: newDiagram.positions
+        positions: newDiagram.positions
       }
 
     case 'add-stone':
       if (stoneColour === 'black' || stoneColour === 'white') {
-        let positionToUpdate = state.positions[position]
-
         positionToUpdate.spaces[space] = {
           ...positionToUpdate.spaces[space],
           id: space,
@@ -34,8 +34,14 @@ export default function useUpdateDiagram(state: Diagram, action: Action) {
       return { ...state }
 
     case 'remove-stone':
+      positionToUpdate.spaces[space] = {
+        ...positionToUpdate.spaces[space],
+        id: space,
+        stone: undefined
+      }
       return {
-        ...state
+        ...state,
+        positions: [positionToUpdate, ...state.positions]
       }
 
     case 'add-symbol':

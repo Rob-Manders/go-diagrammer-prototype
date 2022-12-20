@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useReducer, useState } from 'react'
 import { SelectedAction } from '../interfaces'
 import useSetAction from '../hooks/useSetAction'
 import useUpdateDiagram from '../hooks/useUpdateDiagram'
@@ -30,8 +30,10 @@ export default function DiagrammerContextProvider({ children }: { children: JSX.
     ]
   })
 
+  const [position, setPosition] = useState<number>(0)
+
   return (
-    <DiagrammerContext.Provider value={{ action, dispatchAction, diagram, dispatchDiagram }}>
+    <DiagrammerContext.Provider value={{ action, dispatchAction, diagram, dispatchDiagram, position, setPosition }}>
       {children}
     </DiagrammerContext.Provider>
   )
